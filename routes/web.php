@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
@@ -7,17 +6,6 @@ use App\Http\Controllers\Backend\BlogController as BackendBlogController;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\ServiceController as BackendServiceController;
 use App\Http\Controllers\Backend\SliderController as BackendSliderController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -30,5 +18,11 @@ Route::prefix('backend')->name('backend.')->group(function () {
     Route::get('/blog', [BackendBlogController::class, 'index'])->name('blog.index');
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');
     Route::get('/sliders', [BackendSliderController::class, 'index'])->name('sliders.index');
+    
+    // Specific routes for services
     Route::get('/services', [BackendServiceController::class, 'index'])->name('services.index');
+    Route::get('/services/create', [BackendServiceController::class, 'create'])->name('services.create');
+    Route::post('/services', [BackendServiceController::class, 'store'])->name('services.store');
 });
+
+

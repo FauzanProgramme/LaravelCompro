@@ -21,14 +21,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        @foreach ($sliders as $item)
                         <tr>
-                            <td>1</td> <!-- Menampilkan ID blog -->
-                            <td>Motor Custom</td> <!-- Menampilkan judul blog -->
-                            <td>deksripsi singkat</td> <!-- Menampilkan gambar slider -->
-                            <td>path</td> <!-- Menampilkan deskripsi blog -->
-                            
-                            
+
+                            <td>{{ $item->id}} </td> <!-- Menampilkan id blog -->
+                            <td>{{ $item->title}} </td> <!-- Menampilkan judul blog -->
+                            <td>{{$item->description}} </td> <!-- Menampilkan gambar slider -->
+                            <td>
+                                <img src="{{ asset($item->file) }}" alt="Gambar Blog" style="width: 100px; height: auto;">
+                            </td>
+
+
                             <td>
                                 <a href="" class="btn btn-warning">Edit</a>
                                 <form action="" method="POST" class="d-inline">
@@ -37,7 +40,7 @@
                                 </form>
                             </td>
                         </tr>
-                        
+                        @endforeach
                     </tbody>
                 </table>
             </div>

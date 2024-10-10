@@ -21,9 +21,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td> <!-- Menampilkan ID blog -->
-                            <td>Motor Custom</td> <!-- Menampilkan judul blog -->
-                            <td>deksripsi singkat</td> <!-- Menampilkan deskripsi blog -->
+                            @foreach ($blogs as $item)
+                            <td>{{$item->id}} </td> <!-- Menampilkan ID blog -->
+                            <td>{{$item->title}}</td> <!-- Menampilkan judul blog -->
+                            <td>{{$item->description}} </td> <!-- Menampilkan deskripsi blog -->
                             <td>
                                 <a href="" class="btn btn-warning">Edit</a>
                                 <form action="" method="POST" class="d-inline">
@@ -32,6 +33,7 @@
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

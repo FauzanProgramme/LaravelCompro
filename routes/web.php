@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\backend\BlogController as BackendBlogController;
-use App\Http\Controllers\backend\LoginController;
-use App\Http\Controllers\backend\ServiceController as BackendServiceController;
-use App\Http\Controllers\backend\SliderController as BackendSliderController;
+use App\Http\Controllers\Backend\BlogController as BackendBlogController;
+use App\Http\Controllers\Backend\LoginController;
+use App\Http\Controllers\Backend\ServiceController as BackendServiceController;
+use App\Http\Controllers\Backend\SliderController as BackendSliderController;
 
 /*
 |--------------------------------------------------------------------------

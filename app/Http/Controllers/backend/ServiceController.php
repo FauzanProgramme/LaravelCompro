@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Services;
@@ -11,6 +11,9 @@ class ServiceController extends Controller
 {
     public function index()
     {    
-        return view('backend.services.index'); // Kirim data ke view
+        $services = Services::get();
+        return view('backend.services.index', [
+            'services' => $services
+        ] ); // Kirim data ke view
     }
 }

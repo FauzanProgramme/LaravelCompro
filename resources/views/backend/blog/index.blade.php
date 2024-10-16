@@ -1,42 +1,39 @@
 @extends('backend.layout.master')
-
 @section('content')
-<div class="container">
-    <h1 class="my-4">Blog</h1>
-    <a href="" class="btn btn-primary mb-2">Tambah Blog</a>
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Daftar Blog</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Judul</th>
-                            <th>Deskripsi</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            @foreach ($blogs as $item)
-                            <td>{{$item->id}} </td> <!-- Menampilkan ID blog -->
-                            <td>{{$item->title}}</td> <!-- Menampilkan judul blog -->
-                            <td>{{$item->description}} </td> <!-- Menampilkan deskripsi blog -->
-                            <td>
-                                <a href="" class="btn btn-warning">Edit</a>
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    <button class="btn btn-danger" type="submit">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Blog</h6>
+    </div>
+    <div class="card-body">
+        <a href="{{route('backend.blog.create')}}" class="btn btn-primary mb-2">Tambah blog</a>
+        <div class="table-responsive">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Judul</th>
+                        <th>File</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($blogs as $item)
+                    <tr>
+                        <td>{{$item->id}}</td>
+                        <td>{{$item->title}}</td>
+                        <td>{{$item->description}} </td>
+                        <td><img src="{{asset($item->file)}}" width="200" alt="images"></td>
+                        <td><a href="" class="btn btn-warning">edit</a>
+                            <form action="{{ route('backend.blog.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus blog ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+                @endforeach
+            </table>
         </div>
     </div>
 </div>

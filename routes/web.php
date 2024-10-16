@@ -15,7 +15,7 @@ Route::get('/slider', [HomeController::class, 'slider'])->name('slider');
 
 // Backend Routes
 Route::prefix('backend')->name('backend.')->group(function () {
-    Route::get('/blog', [BackendBlogController::class, 'index'])->name('blog.index');
+
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');
     Route::get('/sliders', [BackendSliderController::class, 'index'])->name('sliders.index');
     
@@ -23,6 +23,12 @@ Route::prefix('backend')->name('backend.')->group(function () {
     Route::get('/services', [BackendServiceController::class, 'index'])->name('services.index');
     Route::get('/services/create', [BackendServiceController::class, 'create'])->name('services.create');
     Route::post('/services', [BackendServiceController::class, 'store'])->name('services.store');
+
+    //Route Blog
+    Route::get('/blog', [BackendBlogController::class, 'index'])->name('blog.index');
+    Route::get('/blog/create', [BackendBlogController::class, 'create'])->name('blog.create');
+    Route::post('/blog', [BackendBlogController::class, 'store'])->name('blog.store');
+    Route::delete('/blog/{id}', [BackendBlogController::class, 'destroy'])->name('blog.destroy');
 });
 
 

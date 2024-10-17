@@ -77,4 +77,66 @@ class BlogController extends Controller
 
         return redirect()->route('backend.blog.index')->with('success', 'Blog berhasil dihapus.'); // Redirect ke halaman daftar blog dengan pesan sukses
     }
+    public function edit($id)
+    {
+        $blog = Blogs::where('id', $id)->first();
+        return view('backend.blog.edit', compact('blog'));
+    }
+    public function aksi_edit(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'file' => 'file|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        // Mengambil data blog yang akan di-update
+        $blog = Blogs::findOrFail($id);
+
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'slug' => Str::slug($request->title),
+        ];
+
+        // Cek apakah ada file baru yang diunggah
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+
+            // Hapus file gambar lama jika ada
+            if ($this->fileExists($blog->file)) { // Menggunakan method di dalam $this untuk cek keberadaan file
+                $this->deleteFile($blog->file);  // Menggunakan method di dalam $this untuk menghapus file
+            }
+
+            // Pindahkan file baru ke folder public/blogs
+            $this->saveFile($file, $filename); // Menyimpan file menggunakan method saveFile
+            $data['file'] = 'blogs/' . $filename;  // Perbarui path gambar pada array $data
+        }
+
+        // Update data blog di database tanpa menambah entri baru
+        $blog->update($data);  // Metode ini hanya memperbarui record yang ada di database
+
+        return redirect()->route('backend.blog.index')->with('success', 'Blog berhasil diperbarui.');
+    }
+
+    // Method untuk mengecek apakah file ada di folder public/blogs
+    protected function fileExists($filePath)
+    {
+        return $filePath && file_exists(public_path($filePath));
+    }
+
+    // Method untuk menghapus file dari folder public/blogs
+    protected function deleteFile($filePath)
+    {
+        if ($this->fileExists($filePath)) {
+            unlink(public_path($filePath));
+        }
+    }
+
+    // Method untuk menyimpan file baru ke folder public/blogs
+    protected function saveFile($file, $filename)
+    {
+        $file->move(public_path('blogs'), $filename);
+    }
 }

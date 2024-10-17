@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
@@ -8,7 +9,7 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     public function index()
-    {    
+    {
         $services = Services::all(); // Fetch all services
         return view('backend.services.index', compact('services')); // Pass data to the view
     }
@@ -31,5 +32,12 @@ class ServiceController extends Controller
 
         // Redirect to the index page with success message
         return redirect()->route('backend.services.index')->with('success', 'Service added successfully!');
+    }
+
+    public function aksi_hapus($id)
+    {
+        $service = Services::findOrFail($id); // Cari data berdasarkan ID
+        $service->delete(); // Hapus data
+        return redirect()->route('backend.services.index')->with('success', 'Layanan berhasil dihapus');
     }
 }

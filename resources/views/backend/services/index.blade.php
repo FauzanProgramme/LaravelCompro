@@ -20,17 +20,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($services  as $item)
+                        @foreach($services as $item)
                         <tr>
                             <td>{{$item->id}} </td> <!-- Menampilkan ID blog -->
                             <td>{{$item->title}} </td> <!-- Menampilkan judul blog -->
                             <td>{{$item->description}} </td> <!-- Menampilkan deskripsi blog -->
                             <td>
                                 <a href="" class="btn btn-warning">Edit</a>
-                                <form action="" method="POST" class="d-inline">
+                                <form action="{{ route('backend.services.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
+                                    @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Hapus</button>
                                 </form>
+
                             </td>
                         </tr>
                         @endforeach

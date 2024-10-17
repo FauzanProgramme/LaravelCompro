@@ -12,8 +12,10 @@
                     <tr>
                         <th>Id</th>
                         <th>Judul</th>
+                        <th>Deksripsi</th>
                         <th>File</th>
                         <th>Aksi</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -21,10 +23,10 @@
                     <tr>
                         <td>{{$item->id}}</td>
                         <td>{{$item->title}}</td>
-                        <td>{{$item->description}} </td>
+                        <td>{{$item->description}}</td>
                         <td><img src="{{asset($item->file)}}" width="200" alt="images"></td>
-                        <td><a href="" class="btn btn-warning">edit</a>
-                            <form action="{{ route('backend.blog.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus blog ini?');">
+                        <td><a href="{{route('backend.blog.edit', $item->id) }}" class="btn btn-warning">edit</a>
+                            <form action="{{route('backend.blog.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus blog ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" type="submit">Hapus</button>

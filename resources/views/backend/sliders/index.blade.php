@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <h1 class="my-4">Sliders</h1>
-    <a href="" class="btn btn-primary mb-2">Tambah layanan</a>
+    <a href="{{route('backend.sliders.tambah')}}" class="btn btn-primary mb-2">Tambah Sliders</a>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Daftar Blog</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Daftar Sliders</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -33,8 +33,8 @@
 
 
                             <td>
-                                <a href="" class="btn btn-warning">Edit</a>
-                                <form action="" method="POST" class="d-inline">
+                                <a href="{{route('backend.sliders.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('backend.sliders.hapus', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     <button class="btn btn-danger" type="submit">Hapus</button>
                                 </form>

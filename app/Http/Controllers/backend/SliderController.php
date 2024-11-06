@@ -39,7 +39,7 @@ class SliderController extends Controller
         }
 
         // Simpan data slider ke database
-        Sliders::create([
+        Sliders::insert([
             'title' => $request->title,
             'description' => $request->description,
             'file' => 'sliders/' . $fileName,  // Simpan path gambar

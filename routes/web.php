@@ -13,12 +13,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/blog/{id}', [BlogController::class, 'detail'])->name('blog.detail');
 Route::get('/slider', [HomeController::class, 'slider'])->name('slider');
+    //Route untuk login
+    Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+    Route::post('/aksi_login', [LoginController::class, 'aksi_login'])->name('aksi_login');
 
 // Backend Routes
 Route::prefix('backend')->name('backend.')->group(function () {
 
+
+
     //Route untuk Sliders
-    Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+
     Route::get('/sliders', [BackendSliderController::class, 'index'])->name('sliders.index');
     Route::get('/sliders/tambah', [BackendSliderController::class, 'tambah'])->name('sliders.tambah'); // Menampilkan form tambah slider
     Route::post('/sliders/aksi_tambah', [BackendSliderController::class, 'aksi_tambah'])->name('sliders.aksi_tambah');   // Menyimpan slider baru

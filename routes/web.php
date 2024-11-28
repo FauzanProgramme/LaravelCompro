@@ -48,8 +48,7 @@ Route::prefix('backend')->name('backend.')->group(function () {
 
 
     //Route Blog
-    Route::get('/blog', [BackendBlogController::class, 'index'])->name('blog.index');
-    
+    Route::get('/blog', [BackendBlogController::class, 'index'])->name('blog.index'); 
     Route::get('/blog/create', [BackendBlogController::class, 'create'])->name('blog.create');
     Route::post('/blog', [BackendBlogController::class, 'store'])->name('blog.store');
     Route::delete('/blog/{id}', [BackendBlogController::class, 'destroy'])->name('blog.destroy');

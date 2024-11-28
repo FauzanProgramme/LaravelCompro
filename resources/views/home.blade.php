@@ -1,71 +1,123 @@
 @extends('layouts.master')
 @section('content')
 <div id="content">
-  <!-- sliders -->
-  <div id="carouselExampleCaptions" class="carousel slide">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      @foreach ($sliders as $item)
-      <div class="carousel-item active">
-        <img src="{{ $item->file }}" class="d-block h-sliders w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>{{ $item->title }}</h5>
-          <p>{{ $item->description }}</p>
+    <div class="slider-block style-one">
+        <div class="prev-arrow flex-center">
+            <i class="ph-bold ph-caret-left text-white"></i>
         </div>
-      </div>
-      @endforeach
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-    </button>
-  </div>
-
-
-  <!-- layanan kami -->
-  <div class="container mt-4 mb-4">
-    <h3 style="text-align:center ; margin-bottom: 20px;"><b>Layanan Kami</b></h3>
-    <div class="row">
-      @foreach ($services as $item)
-      <div class="col-sm-12 col-md-6 col-lg-4">
-        <div class="border-card border-radius p-4">
-          <b>{{$item->title}}</b>
-          <p>{{$item->description}}</p>
+        <div class="slider-main">
+            @foreach ($sliders as $item)
+            <div class="slider-item slider-first">
+                <div class="bg-img">
+                    <img class="w-100 h-100 animate__animated animate__fadeIn animate__delay-0-2s"
+                        src="{{ $item->file }}" alt="" />
+                </div>
+                <div class="container">
+                    <div class="text-content flex-columns-between">
+                        <div class="heading2 text-white animate__animated animate__fadeInUp animate__delay-0-2s">
+                            {{ $item->title }}
+                        </div>
+                        <div
+                            class="body2 text-white mt-12 text-secondary animate__animated animate__fadeInUp animate__delay-0-5s">
+                            {{ $item->description }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
-      </div>
-
-      @endforeach
-    </div>
-  </div>
-
-
-  <!-- artikel -->
-  <div class="container mt-4 mb-4">
-    <h3 style="text-align:center ; margin-bottom: 20px;"><b>Artikel</b></h3>
-
-    <div class="row">
-      @foreach ($blogs as $item)
-      <div class="col-sm-12 col-md-6 col-lg-4">
-        <div class="border-card border-radius p-4">
-
-          <img src="{{ $item->file }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5>{{$item->title}}</h5>
-            <a href="#" class="btn btn-primary">Read More</a>
-          </div>
+        <div class="next-arrow flex-center">
+            <i class="ph-bold ph-caret-right text-white"></i>
         </div>
-      </div>
-      @endforeach
     </div>
-  </div>
-  @endsection
+    <div class="service-block mt-100">
+        <div class="container">
+            <div class="heading3 text-center">Layanan Kami</div>
+            <div class="list-service row mt-40 row-gap-32">
+                @foreach ($services as $item)
+                <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                    <div class="service-item hover-box-shadow bora-8 p-32 bg-white border-line-1px">
+                        <a class="service-item-main flex-column gap-16" href="#">
+                            <div class="heading flex-between">
+                                <div class="number heading3 text-placehover"></div>
+                            </div>
+                            <div class="desc">
+                                <div class="heading7 hover-text-blue">
+                                    {{ $item->title }}
+                                </div>
+                                <div class="body3 text-secondary mt-4">
+                                    {{ $item->description }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="payment-gateway-one mt-100 bg-surface">
+        <div class="bg-img">
+            <img class="w-100 h-100" src="{{ asset($config->file_about) }}" alt="" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-xl-6">
+                    <div class="payment-infor flex-columns-between">
+                        <div class="heading flex-item-center gap-16">
+                            <div class="bg-img">
+                                <img class="w-100" src="assets/images/component/avatar-gateway1.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="text">
+                            <div class="heading3">{{$config->title_about}} </div>
+                            <div class="body3 text-secondary mt-24">
+                                {{$config->description_about}}
+                            </div>
+                        </div>
+                        <div class="button-block flex-item-center gap-24">
+                            <a class="button-share box-shadow hover-button-black text-white bg-blue text-button pt-12 pb-12 pl-36 pr-36 bora-48"
+                                href="{{route('product')}}">Get started</a><a
+                                class="button-share box-shadow hover-button-black text-on-surface bg-white text-button pt-12 pb-12 pl-36 pr-36 bora-48 flex-item-center gap-8"
+                                href="https://api.whatsapp.com/send?phone={{$config->phone}} " target="_blank"><i class="ph ph-phone fs-20"></i><span>{{$config->phone}}</span></a><img src="assets/images/component/gateway1-dot.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-list style-one mt-100 mb-5">
+        <div class="container">
+            <div class="heading3 text-center">Blog Terbaru</div>
+            <div class="row row-gap-32 mt-40">
+                @foreach ($blogs as $item)
+                <div class="blog-item col-12 col-xl-4 col-sm-6" data-name="">
+                    <a class="blog-item-main" href="{{ route('blog_detail', $item->slug) }}">
+                        <div class="bg-img w-100 overflow-hidden mb-minus-1">
+                            <img class="w-100 h-100 display-block" src="{{ $item->file }}"
+                                alt="CI Financial sells RIA stake in new expansion strategy" />
+                        </div>
+                        <div class="infor bg-white p-24">
+                            <div class="heading6 mt-8">
+                                {{ $item->title }}
+                            </div>
+                            <div class="date flex-item-center gap-16 mt-8">
+                                <div class="author caption2 text-secondary">
+                                    by <span class="text-on-surface">Avitex</span>
+                                </div>
+                                <div class="item-date flex-item-center">
+                                    <i class="ph-bold ph-calendar-blank"></i><span class="ml-4 caption2">1 days
+                                        ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+    <a class="scroll-to-top-btn" href="#header"><i class="ph-bold ph-caret-up"></i></a>
+</div>
+@endsection

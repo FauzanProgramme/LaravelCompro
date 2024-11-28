@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
         <label for="description">Deskripsi:</label>
-        <textarea class="form-control" id="description" name="description">{{ $service->description }}</textarea>
+        <textarea class="form-control" id="description" name="description" value="{{ $service->description }}"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
 </form>

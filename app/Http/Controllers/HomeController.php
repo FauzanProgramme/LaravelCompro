@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Sliders;
 use App\Models\Services;
 use App\Models\Blogs;
-
+use App\Models\Configuration;
 
 class HomeController extends Controller
 {
@@ -14,11 +14,12 @@ class HomeController extends Controller
         $services=Services::get();
         $blogs=Blogs::get();
         $sliders=Sliders::get();
+        $config=Configuration::first();
         return view('home',[
             'sliders'=>$sliders,
             'services'=>$services,
-            'blogs'=>$blogs
-
+            'blogs'=>$blogs,
+            'config'=>$config
         ]);
 
     }

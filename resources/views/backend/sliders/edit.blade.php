@@ -16,7 +16,7 @@
                         placeholder="Masukan judul" value="{{$slider->title}}">
                 </div>
                 <div class="form-group">
-                    <textarea name="description" class="form-control editor" placeholder="masukan deskripsi" value="{{$slider->description}}" cols="30" rows="3"></textarea>
+                    <textarea name="description" class="form-control editor" placeholder="masukan deskripsi"  cols="30" rows="3">{{$slider->description}}</textarea>
                 </div>
                 <div class="form-group">
                     <input type="file" name="file" accept="image/.jpg, .png, .pdf, .docx" class="form-control form-control-user" placeholder="Masukan file" value="{{$slider->file}}">

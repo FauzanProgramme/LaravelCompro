@@ -28,7 +28,7 @@ class SliderController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:200048',
         ]);
 
         // Upload gambar slider
@@ -39,7 +39,7 @@ class SliderController extends Controller
         }
 
         // Simpan data slider ke database
-        Sliders::create([
+        Sliders::insert([
             'title' => $request->title,
             'description' => $request->description,
             'file' => 'sliders/' . $fileName,  // Simpan path gambar

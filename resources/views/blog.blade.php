@@ -1,68 +1,60 @@
 @extends('layouts.master')
 @section('content')
+    <div id="content">
 
-<!-- Artikel -->
-<div class="container mt-4">
-    <div class="row">
-        <!-- Kolom 1 dengan col-8 dan border -->
-        <div class="col-8 p-4">
-            <div class="row">
-                @foreach ($blogterbaru as $item)
-                <div class="col-5">
-                    <img src="{{$item->file}}" class="card-img-top border-radius" alt="...">
-                </div>
-                <div class="col-7">
-                    <div class="card-body">
-                        <h3 class="card-title">{{$item->title}}</h3>
-                        <h6 class="mb-0">by Otomotif motor | {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</h6>
-                        <a href="{{ route('blog.detail', $item->id) }}" class="text-black"><b>Read More</b></a>
+        <div class="blog-list mt-100">
+            <div class="container">
+                <div class="row row-gap-40">
+                    <div class="col-12 col-lg-8 flex-column row-gap-40">
+                        @foreach ($blogterbaru as $item)
+                            <a class="row blog-item row-gap-20 item-filter" href="{{route('blog_detail',$item->slug)}}" data-name="tab-one">
+                                <div class="col-12 col-md-6">
+                                    <div class="bg-img w-100 overflow-hidden bora-16"><img class="w-100 h-100 display-block"
+                                            src="{{ asset($item->file) }}" alt="" /></div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="heading6 mt-8">{{ $item->title }}</div>
+                                    <div class="date flex-item-center gap-16 mt-8">
+                                        <div class="author caption2 text-secondary">by <span class="text-on-surface">Avitex
+                                            </span></div>
+                                        <div class="item-date flex-item-center"><i
+                                                class="ph-bold ph-calendar-blank"></i><span class="ml-4 caption2">2 days
+                                                ago</span></div>
+                                    </div>
+                                    <a href="{{route('blog_detail',$item->slug)}}" class="read fw-700 text-underline">Read More</a>
+                                </div>
+                            </a>
+                        @endforeach
+
+                    </div>
+                    <div class="col-12 col-lg-4 pl-55">
+
+                        <div class="recent-post-block mt-40">
+                            <div class="recent-post-heading heading7">Blog terbaru</div>
+                            @foreach ($blogterbaru as $item)
+                                <div class="list-recent-post mt-16">
+                                    <div class="recent-post-item d-flex item-start gap-16"><a class="item-img"
+                                            href="{{route('blog_detail',$item->slug)}}"><img src="{{asset( $item->file) }}" alt="" /></a>
+                                        <div class="item-infor"><a href="{{route('blog_detail',$item->slug)}}">
+                                                <div class="item-date flex-item-center"><i
+                                                        class="ph-bold ph-calendar-blank"></i><span class="ml-4 caption2">2
+                                                        days ago</span></div>
+                                                <div class="item-title mt-4">{{ $item->title }}
+                                                </div>
+                                            </a>
+                                          </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                            
+
+                        </div>
+
                     </div>
                 </div>
-                @endforeach
             </div>
-        </div>
-
-        <!-- Kolom 2 dengan col-4 dan border -->
-        <div class="col-4 p-4 ">
-            <h3><b>Blog Terbaru</b></h3>
-            <div class="row p-2">
-                @foreach ($blogterbaru as $item)
-                <div class="col-3 ">
-                    <img src="{{$item->file}}" class="border-radius w-100 h-100" alt="...">
-                </div>
-                <div class="col-9 ">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$item->title}}</h5>
-                        <h6 class="mb-0">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</h6>
-                        <a href="{{ route('blog.detail', $item->id) }}" class="text-black"><b>Read More</b></a>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
+        </div><a class="scroll-to-top-btn" href="#header"><i class="ph-bold ph-caret-up"></i></a>
+        <div class="pb-100"> </div>
     </div>
-</div>
-
-<div class="container mt-4">
-    <h3><b>Blog Lainnya</b></h3>
-    <div class="row">
-        @foreach ($blogterlama as $item)
-        <div class="col-6">
-            <div class="row">
-                <div class="col-5">
-                    <img src="{{$item->file}}" class="card-img-top border-radius" alt="...">
-                </div>
-                <div class="col-7">
-                    <div class="card-body">
-                        <h3 class="card-title">{{$item->title}}</h3>
-                        <p>Waktu: <strong>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</strong></p>
-                        <a href="{{ route('blog.detail', $item->id) }}" class="text-black"><b>Read More</b></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-</div>
-
 @endsection
